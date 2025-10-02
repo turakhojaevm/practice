@@ -1,0 +1,38 @@
+.btn-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  margin: 4rem 4rem 0 4rem;
+}
+
+button {
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  border-color: transparent;
+  cursor: pointer;
+
+  &:nth-child(1) {
+    background-color: green;
+  }
+
+  &:nth-child(2) {
+    background-color: red;
+  }
+
+  &:nth-child(3) {
+    background-color: dimgrey;
+  }
+}
+
+.value-block {
+  display: flex;
+  flex-direction: column;
+
+  margin: 2rem 4rem 0 4rem;
+
+  p {
+    font-size: 1.5rem;
+    margin: 5px 0 0 0;
+  }
+}
