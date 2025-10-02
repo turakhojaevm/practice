@@ -1,10 +1,10 @@
 <div class="btn-list">
   <button (click)="increment()">+1</button>
-  <button [disabled]="disabled" (click)="decrement()">-1</button>
-  <button [disabled]="disabled" (click)="reset()">=0</button>
+  <button [disabled]="disabled$ | async" (click)="decrement()">-1</button>
+  <button [disabled]="disabled$ | async" (click)="reset()">=0</button>
 </div>
 
 <div class="value-block">
-  <p>Value: {{ value }}</p>
+  <p>Value: {{ count$ | async }}</p>
   <p>Updated time: {{ updatedAt | date:'dd/MM/yyyy hh:mm:ss' }}</p>
 </div>

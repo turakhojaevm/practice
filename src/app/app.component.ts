@@ -1,35 +1,37 @@
-import { Component } from '@angular/core';
-import {DatePipe} from '@angular/common';
+import {Component, inject} from '@angular/core';
+import {AsyncPipe, DatePipe} from '@angular/common';
+import {Store} from '@ngrx/store';
+import {countSelector, decrement, increment, reset} from './reducers/counter.reducers';
+import {map} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [
-    DatePipe
+    DatePipe,
+    AsyncPipe
   ],
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  private store = inject(Store);
   title = 'practice';
-  value = 0;
   updatedAt = new Date();
-
-  get disabled(): boolean {
-    return this.value <= 0;
-  }
+  count$ = this.store.select(countSelector);
+  disabled$ = this.count$.pipe(map(count => count <= 0));
 
   increment(): void {
-    this.value++;
     this.updatedAt = new Date();
+    this.store.dispatch(increment());
   }
 
   decrement(): void {
-    this.value--;
     this.updatedAt = new Date();
+    this.store.dispatch(decrement());
   }
 
   reset(): void {
-    this.value = 0;
     this.updatedAt = new Date();
+    this.store.dispatch(reset());
   }
 }
