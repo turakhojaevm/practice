@@ -6,5 +6,7 @@
 
 <div class="value-block">
   <p>Value: {{ count$ | async }}</p>
-  <p>Updated time: {{ updatedAt | date:'dd/MM/yyyy hh:mm:ss' }}</p>
+  @if (updatedAt$ | async) {
+    <p>Updated time: {{ updatedAt$ | async | date:'dd/MM/yyyy hh:mm:ss' }}</p>
+  }
 </div>
